@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <ion-title>hora para visitarnos</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <form (ngSubmit)="confirmarCita()" #citaForm="ngForm">
+      <!-- Nombre completo -->
+      <ion-item>
+        <ion-input label="Nombre completo" labelPlacement="stacked" placeholder="Nombre completo" [(ngModel)]="cita.nombre" name="nombre" required> </ion-input>
+      </ion-item>
+
+      <!-- Edad -->
+      <ion-item>
+        <ion-input
+          label="Edad"
+          labelPlacement="stacked"
+          placeholder="Edad"
+          [(ngModel)]="cita.edad"
+          name="edad"
+          type="number"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Email -->
+      <ion-item>
+        <ion-input
+          label="Email"
+          labelPlacement="stacked"
+          placeholder="Email"
+          [(ngModel)]="cita.email"
+          name="email"
+          type="email"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Fecha -->
+      <ion-item>
+        <ion-input
+          label="Fecha de la cita (día/mes/año)"
+          labelPlacement="stacked"
+          placeholder="dd/mm/yyyy"
+          [(ngModel)]="cita.fecha"
+          name="fecha"
+          required
+          pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/([0-9]{4})$">
+        </ion-input>
+      </ion-item>
+
+      <!-- Motivo de visita -->
+      <ion-list>
+        <ion-item>
+          <ion-select
+            placeholder="motivo"
+            [(ngModel)]="cita.motivo"
+            name="motivo"
+            required>
+            <ion-select-option value="adopcion">Adopción</ion-select-option>
+            <ion-select-option value="informacion">Información</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      
+
+      <!-- Botones -->
+      <ion-button  expand="full" (click)="cancelarCita()">Cancelar cita</ion-button>
+      <ion-button  expand="full" type="submit" [disabled]="!citaForm.valid" color="primary">Confirmar cita</ion-button>
+    </form>
+  </ion-card>
+</ion-content>

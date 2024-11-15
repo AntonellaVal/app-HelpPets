@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <ion-title>ficha del animal</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content>
+    <ion-card>
+      <img src="/assets/icon/waton.jpg"  alt="dino">
+      <div class="card-body">
+        <ion-card-title>Conocelo a detalle</ion-card-title>
+
+        <h5 class="card-title">Nombre:</h5>
+        <p class="card-text">waton</p>
+        <h5 class="card-title">Genero:</h5>
+        <p class="card-text">Macho</p>
+        <h5 class="card-title">Especie:</h5>
+        <p class="card-text">Conejo</p>
+        <h5 class="card-title">Edad:</h5>
+        <p class="card-text">1 año</p>
+        <h5 class="card-title">Vacunas:</h5>
+        <p class="card-text">no</p>
+        <h5 class="card-title">Problemas de salud:</h5>
+        <p class="card-text">no</p>
+        <h5 class="card-title">Su historia:</h5>
+        <p class="card-text">el es un conejo cariñoso y jugeton, le gusta estar con la gente y es fan de las frutillas</p>
+
+        <ion-button color="primary" [routerLink]="['/adoptar']">Adoptar</ion-button>
+      </div>
+    </ion-card>
+  </ion-content>
+</ion-content>

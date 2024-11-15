@@ -1,0 +1,76 @@
+
+ion-header{
+  background-color: rgb(245, 230, 255);
+  ion-toolbar{
+      --background: transparent;
+  }
+}
+      ion-content {
+        --background: url('/assets/icon/fondoanimales.avif') no-repeat center center / cover; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; // Asegura que el contenido se coloque desde la parte superior
+        align-items: center;
+        height: 100%; // Ocupa toda la pantalla
+      
+        .contenedor-imagen {
+          display: flex;
+          justify-content: center;  /* Centra horizontalmente */
+          align-items: center;      /* Centra verticalmente */
+          margin-top: 10ch;
+          margin-bottom: 5ch;
+          height: 50px;            /* Opcional: hace que el contenedor ocupe toda la altura de la pantalla */
+        }
+
+        .imagen{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          width: 150px;    /* Ajusta el tamaño según lo necesites */
+          height: 150px;   /* Mantén el mismo valor para width y height para que sea un círculo perfecto */
+          border-radius: 50%; /* Hace que la imagen sea redonda */
+          object-fit: cover;  /* Asegura que la imagen no se deforme */
+        }
+      
+        .form-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          max-width: 400px;
+          z-index: 1; // Asegura que el formulario esté encima del fondo
+          padding: 20px;
+        }
+
+        ion-item{
+          padding-top: 10px;
+      }
+      
+        ion-card {
+          background-color: #ffffff;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+          padding: 15px;
+          width: 100%;
+          max-width: 400px;
+          z-index: 1; // Asegura que la tarjeta esté por encima del fondo
+        }
+      
+        ion-item {
+          --background: transparent;
+        }
+      
+        .text-register {
+          cursor: pointer;
+          text-align: center;
+          margin-top: 10px;
+          display: block;
+        }
+      
+        .button-container {
+          width: 100%;
+          margin-top: 15px;
+        }
+      }
+      

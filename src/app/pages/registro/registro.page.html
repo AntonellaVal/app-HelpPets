@@ -1,0 +1,37 @@
+
+
+<ion-content [fullscreen]="true">
+  <ion-content>
+
+    <form (ngSubmit)="registro()" #registroForm="ngForm" class="form-container">
+      <ion-card>
+        <div class="titulo-bienvenida">Bienvenido a Helpets</div>
+        <ion-item>
+          <ion-input label="Email" labelPlacement="floating" placeholder="Ingrese email" type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-input label="Contraseña" labelPlacement="floating" placeholder="Ingrese contraseña" type="password" [(ngModel)]="password" name="password" required>
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="password && !validPassword(password)">
+          La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
+        </ion-text>
+
+        <ion-item>
+          <ion-input label="Confirmar Contraseña" labelPlacement="floating" placeholder="Ingrese contraseña nuevamente" type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="password && confirmPassword && password !== confirmPassword">
+          Las contraseñas no coinciden.
+        </ion-text>
+    
+        <ion-button class="button-container" type="submit" color="tertiary" [disabled]="!registroForm.valid || password !==confirmPassword">Registrarse</ion-button>
+      </ion-card>
+    </form>
+  </ion-content>
+</ion-content>

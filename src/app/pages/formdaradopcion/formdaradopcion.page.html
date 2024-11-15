@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <ion-title>solicitud para dar en adopcion</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content>
+    <ion-card>
+      <p>Su información personal</p>
+      
+      <ion-item>
+        <ion-label position="stacked">Nombre completo</ion-label>
+        <ion-input [(ngModel)]="daradopcion.nombre_persona" placeholder="Ingrese su nombre completo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="daradopcion.email" placeholder="Ingrese su email"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Edad</ion-label>
+        <ion-input type="number" [(ngModel)]="daradopcion.edad_persona" placeholder="Ingrese su edad"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Teléfono (+59)</ion-label>
+        <ion-input [(ngModel)]="daradopcion.telefono" placeholder="Ingrese su teléfono (+56 9XXXXXXXX)"></ion-input>
+      </ion-item>
+  
+      <p>Información de su mascota</p>
+  
+      <ion-item>
+        <ion-label position="stacked">Nombre de la mascota</ion-label>
+        <ion-input [(ngModel)]="daradopcion.nombre_mascota" placeholder="Ingrese el nombre de su mascota"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Edad de la mascota</ion-label>
+        <ion-input [(ngModel)]="daradopcion.edad_mascota" placeholder="Ejemplo: 13 días, 4 años"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Vacunas</ion-label>
+        <ion-input [(ngModel)]="daradopcion.vacunas_mascotas" placeholder="Ingrese las vacunas que tiene su mascota"></ion-input>
+      </ion-item>
+      <p>si no tiene vacunas ingrese "no"</p>
+  
+      <ion-item>
+        <ion-label position="stacked">Problemas de salud</ion-label>
+        <ion-input [(ngModel)]="daradopcion.problemas_salud" placeholder="Ingrese qué problema de salud tiene su mascota"></ion-input>
+      </ion-item>
+      <p>si no tiene problemas de salud ingrese "no"</p>
+  
+      <ion-item>
+        <ion-label position="stacked">Historia de la mascota</ion-label>
+        <ion-input [(ngModel)]="daradopcion.historia_mascota" placeholder="Ingrese una breve historia de su mascota"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Foto de la mascota</ion-label>
+        <ion-button expand="full" (click)="seleccionarFoto()">Agregar foto</ion-button>
+        <ion-button expand="full" (click)="tomarFoto()">Tomar foto</ion-button>
+        <img *ngIf="foto" [src]="foto" alt="Foto de la mascota" style="width: 100%; height: auto; margin-top: 10px;">
+      </ion-item>
+  
+      <!-- //<ion-button expand="full" color="tertiary" (click)="guardarBorrador()">Guardar como borrador</ion-button> -->
+      <ion-button expand="full" color="tertiary" (click)="confirmarDarAdopcion()">Enviar solicitud</ion-button>
+      <!-- <ion-button expand="full" color="tertiary" (click)="cancelarDarAdopcion()">Cancelar</ion-button> -->
+    </ion-card>
+  </ion-content>
+  
+  
+</ion-content>

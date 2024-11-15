@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <ion-title>adopta</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <p>Su información personal</p>
+      
+      <ion-item>
+        <ion-label position="stacked">Nombre completo</ion-label>
+        <ion-input [(ngModel)]="adopcion.nombre" placeholder="Ingrese su nombre completo"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Edad</ion-label>
+        <ion-input type="number" [(ngModel)]="adopcion.edad" placeholder="Ingrese su edad"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="adopcion.email" placeholder="Ingrese su email"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Teléfono (+59)</ion-label>
+        <ion-input [(ngModel)]="adopcion.telefono" placeholder="Ingrese su teléfono (+56 9XXXXXXXX)"></ion-input>
+      </ion-item>
+      
+      <ion-button expand="full" color="primary" (click)="adoptar()">Adoptar</ion-button>
+
+  </ion-card>
+</ion-content>

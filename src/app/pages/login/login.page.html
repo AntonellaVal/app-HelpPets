@@ -1,0 +1,35 @@
+
+
+<ion-content [fullscreen]="true">
+  <ion-content>
+
+
+    <div class="contenedor-imagen">
+      <img src="/assets/icon/logo 1.jpg" alt="Descripción de la imagen" class="imagen">
+    </div>
+
+    
+    
+    <form (ngSubmit)="inicio()" #inicioForm="ngForm" class="form-container">
+      <ion-card>
+        <ion-item>
+          <ion-input label="Email" labelPlacement="floating" placeholder="Ingrese email" type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-input label="Contraseña" labelPlacement="floating" placeholder="Ingrese contraseña" type="password" [(ngModel)]="password" name="password" required>
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger" *ngIf="password && !validPassword(password)">
+          La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
+        </ion-text>
+
+        <ion-text class="text-register" color="tertiary" (click)="Irregistro()">¿No tienes una cuenta? <strong>Regístrate aquí</strong></ion-text>
+    
+        <ion-button class="button-container" type="submit" color="tertiary" [disabled]="!inicioForm.valid">Ingresar</ion-button>
+      </ion-card>
+    </form>
+  </ion-content>
+</ion-content>

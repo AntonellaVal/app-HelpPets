@@ -1,0 +1,99 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <ion-title>animales en adopcion</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <nav class="contenedor-cards">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/perro1.jpg" />
+            <ion-card-header>
+              <ion-card-title>dino</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+  
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card >
+            <img alt="Silhouette of mountains" src="/assets/icon/waton.jpg" [routerLink]="['/fichaanimales']" />
+            <ion-card-header>
+              <ion-card-title>waton</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/gato1.jpg" />
+            <ion-card-header>
+              <ion-card-title>eve</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+  
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/colo colo.jpg" />
+            <ion-card-header>
+              <ion-card-title>colo colo</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/gato2.jpg">
+            <ion-card-header>
+              <ion-card-title>mushu</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+  
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/mini waton.jpg" />
+            <ion-card-header>
+              <ion-card-title>mini waton</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/nina.jpg" />
+            <ion-card-header>
+              <ion-card-title>nina</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+  
+        <ion-col size="6" size-md="2" class="ion-align-self-center">
+          <ion-card>
+            <img alt="Silhouette of mountains" src="/assets/icon/teo.jpg" />
+            <ion-card-header>
+              <ion-card-title>teo</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </nav>
+</ion-content>
