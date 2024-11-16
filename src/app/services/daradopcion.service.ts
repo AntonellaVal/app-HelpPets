@@ -1,3 +1,9 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'  
+})
+
 export class Daradopcion {
   idsolicitud!: number;
   nombre_persona!: string;
@@ -5,7 +11,7 @@ export class Daradopcion {
   edad_persona!: number;
   telefono!: string;
   nombre_mascota!: string;
-  edad_mascota!: string;
+  edad_mascota!: number;
   vacunas_mascotas!: string;
   problemas_salud!: string;
   historia_mascota!: string;

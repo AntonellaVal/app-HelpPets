@@ -15,6 +15,10 @@
         <ion-item>
           <ion-input label="Email" labelPlacement="floating" placeholder="Ingrese email" type="email" [(ngModel)]="email" name="email" required></ion-input>
         </ion-item>
+
+        <ion-text color="danger" *ngIf="email && !isGmailEmail(email)">
+          El correo debe terminar en arroba gmail.com.
+        </ion-text>
     
         <ion-item>
           <ion-input label="Contraseña" labelPlacement="floating" placeholder="Ingrese contraseña" type="password" [(ngModel)]="password" name="password" required>

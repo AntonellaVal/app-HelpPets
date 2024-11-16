@@ -19,11 +19,25 @@ export class LoginPage implements OnInit {
     return passwordRegEx.test(password);
   }
 
-  inicio(){
-    if (this.auten.validateLogin(this.email, this.password) && this.auten.validPassword(this.password)) {
-      this.navCtrl.navigateForward('/animaleadopcion');
+  isGmailEmail(email: string): boolean {
+    return email.endsWith('@gmail.com');
+  }
+
+  inicio(): void {
+    if (this.isGmailEmail(this.email)) {
+      if (this.auten.validateLogin(this.email, this.password)) {
+        if (this.auten.isAdmin(this.email)) {
+          console.log("Inicio de sesión como administrador.");
+            this.navCtrl.navigateForward('/fichaanimales');
+        } else {
+          console.log("Inicio de sesión como usuario normal.");
+            this.navCtrl.navigateForward('/animaleadopcion');
+        }
+      } else {
+        console.log("Por favor, ingresa un email válido y una contraseña que cumpla con los requisitos de registro.");
+      }
     } else {
-      alert('Por favor, ingresa un email válido y una contraseña que cumpla con los requisitos de registro.');
+      console.log("El email debe terminar en @gmail.com");
     }
   }
 

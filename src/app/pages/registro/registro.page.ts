@@ -21,13 +21,21 @@ export class RegistroPage implements OnInit {
     return passwordRegEx.test(password);
   }
 
-  registro(){
-    if (this.password === this.confirmPassword && this.auten.validPassword(this.password)) {
-      this.auten.registerUser(this.email, this.password);
-      console.log('Usuario registrado exitosamente');
-      this.navCtrl.navigateForward('/login');  
+  isGmailEmail(email: string): boolean {
+    return email.endsWith('@gmail.com');
+  }
+
+  registro(): void {
+    if (this.isGmailEmail(this.email) && this.password === this.confirmPassword) {
+      if (this.validPassword(this.password)) {
+        this.auten.registerUser(this.email, this.password);
+        console.log("Registro exitoso.");
+          this.navCtrl.navigateForward('/login');
+      } else {
+        console.log("La contraseña no cumple con los requisitos.");
+      }
     } else {
-      alert('Las contraseñas no coinciden o no cumplen con los requisitos.');
+      alert("El correo debe terminar en @gmail.com y las contraseñas deben coincidir.");
     }
   }
 
