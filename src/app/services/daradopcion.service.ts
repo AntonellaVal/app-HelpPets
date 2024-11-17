@@ -11,7 +11,7 @@ export class Daradopcion {
   edad_persona!: number;
   telefono!: string;
   nombre_mascota!: string;
-  edad_mascota!: number;
+  edad_mascota!: string;
   vacunas_mascotas!: string;
   problemas_salud!: string;
   historia_mascota!: string;

@@ -38,6 +38,7 @@ export class BasedatosService {
       daradopcion.historia_mascota,
       daradopcion.foto
     ];
+    
 
     return this.database.executeSql(sql, valores);
   }
