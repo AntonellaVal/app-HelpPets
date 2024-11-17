@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { BasedatosService } from 'src/app/services/basedatos.service';
 
 @Component({
   selector: 'app-registro',
@@ -13,7 +14,7 @@ export class RegistroPage implements OnInit {
   password: string = "";
   confirmPassword: string = "";
 
-  constructor(private navCtrl: NavController, private auten: AutenticacionService) { }
+  constructor(private navCtrl: NavController, private auten: AutenticacionService, private bdService: BasedatosService) { }
 
   validPassword(password: string): boolean {
     // Expresión regular: al menos una mayúscula, un número y un carácter especial
@@ -25,6 +26,7 @@ export class RegistroPage implements OnInit {
     if (this.password === this.confirmPassword && this.auten.validPassword(this.password)) {
       this.auten.registerUser(this.email, this.password);
       console.log('Usuario registrado exitosamente');
+      
       this.navCtrl.navigateForward('/login');  
     } else {
       alert('Las contraseñas no coinciden o no cumplen con los requisitos.');
@@ -32,6 +34,7 @@ export class RegistroPage implements OnInit {
   }
 
   ngOnInit() {
+    this.bdService.abrirBaseDatos();
   }
 
 }

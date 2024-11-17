@@ -22,13 +22,27 @@
           </ion-input>
         </ion-item>
 
-        <ion-text color="danger" *ngIf="password && !validPassword(password)">
-          La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
+        <ion-text color="danger" *ngIf="errorLogin">
+          Email o contraseña incorrectos.
         </ion-text>
 
-        <ion-text class="text-register" color="tertiary" (click)="Irregistro()">¿No tienes una cuenta? <strong>Regístrate aquí</strong></ion-text>
-    
-        <ion-button class="button-container" type="submit" color="tertiary" [disabled]="!inicioForm.valid">Ingresar</ion-button>
+        <!-- Texto para redirigir al registro -->
+        <ion-text 
+          class="text-register" 
+          color="tertiary" 
+          (click)="Irregistro()">
+          ¿No tienes una cuenta? <strong>Regístrate aquí</strong>
+        </ion-text>
+        
+        <!-- Botón de inicio de sesión -->
+        <ion-button 
+          class="button-container" 
+          type="submit" 
+          color="tertiary" 
+          [disabled]="!inicioForm.valid">
+          Ingresar
+        </ion-button>
+        
       </ion-card>
     </form>
   </ion-content>

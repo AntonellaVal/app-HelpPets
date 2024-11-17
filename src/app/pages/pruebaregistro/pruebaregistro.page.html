@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>pruebaregistro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item *ngFor="let usuario of usuarios">
+    <ion-label>
+      <h2>Email: {{ usuario.email }}</h2>
+      <p>Contraseña: {{ usuario.password }}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

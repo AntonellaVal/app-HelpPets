@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'adoptar',
     loadChildren: () => import('./pages/adoptar/adoptar.module').then( m => m.AdoptarPageModule)
   },
+  {
+    path: 'pruebaregistro',
+    loadChildren: () => import('./pages/pruebaregistro/pruebaregistro.module').then( m => m.PruebaregistroPageModule)
+  },
 ];
 
 @NgModule({
