@@ -15,11 +15,7 @@ export class FormdaradopcionPage implements OnInit {
   foto: string | null = null;
 
   constructor(
-    private alertController: AlertController,
-    private navCtrl: NavController,
-    private camera: Camera,
-    private basedatosService: BasedatosService
-  ) {}
+    private alertController: AlertController, private navCtrl: NavController, private camera: Camera, private basedatosService: BasedatosService) {}
 
   ngOnInit() {
     this.basedatosService.abrirBaseDatos();
@@ -77,6 +73,11 @@ export class FormdaradopcionPage implements OnInit {
       return;
     }
 
+    if (!this.especieValida()) {
+      await this.mostrarAlerta('Error', 'La especie debe ser "perro", "gato" o "conejo".');
+      return;
+    }
+
     try {
       await this.basedatosService.agregarSolicitud(this.daradopcion);
       await this.mostrarAlerta('Adopción Confirmada', 'La adopción fue confirmada con éxito.');
@@ -88,8 +89,8 @@ export class FormdaradopcionPage implements OnInit {
   }
 
   private camposVacios(): boolean {
-    return !this.daradopcion.nombre_persona || !this.daradopcion.edad_persona || !this.daradopcion.telefono || 
-           !this.daradopcion.nombre_mascota || !this.daradopcion.edad_mascota || 
+    return !this.daradopcion.nombre_persona || !this.daradopcion.email || !this.daradopcion.edad_persona || !this.daradopcion.telefono || 
+           !this.daradopcion.nombre_mascota || !this.daradopcion.edad_mascota || !this.daradopcion.especie ||
            !this.daradopcion.vacunas_mascotas || !this.daradopcion.problemas_salud || !this.daradopcion.historia_mascota;
   }
 
@@ -111,5 +112,9 @@ export class FormdaradopcionPage implements OnInit {
     return regexTelefonoChileno.test(this.daradopcion.telefono);
   }
 
+  private especieValida(): boolean {
+    const especiesValidas = ['perro', 'gato', 'conejo'];
+    return especiesValidas.includes(this.daradopcion.especie?.toLowerCase());
+  }
 
 }

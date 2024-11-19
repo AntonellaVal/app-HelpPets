@@ -6,6 +6,7 @@ export class Daradopcion {
   telefono!: string;
   nombre_mascota!: string;
   edad_mascota!: string;
+  especie!: String;
   vacunas_mascotas!: string;
   problemas_salud!: string;
   historia_mascota!: string;

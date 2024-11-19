@@ -16,6 +16,10 @@ export class RegistroPage implements OnInit {
 
   constructor(private navCtrl: NavController, private auten: AutenticacionService, private bdService: BasedatosService) { }
 
+  ngOnInit() {
+    this.bdService.abrirBaseDatos();
+  }
+
   validPassword(password: string): boolean {
     // Expresión regular: al menos una mayúscula, un número y un carácter especial
     const passwordRegEx = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
@@ -31,10 +35,6 @@ export class RegistroPage implements OnInit {
     } else {
       alert('Las contraseñas no coinciden o no cumplen con los requisitos.');
     }
-  }
-
-  ngOnInit() {
-    this.bdService.abrirBaseDatos();
   }
 
 }

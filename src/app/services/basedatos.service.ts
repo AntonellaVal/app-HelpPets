@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Daradopcion } from './daradopcion.service';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 export class BasedatosService {
   public database!: SQLiteObject;
 
-  tablaDaradopcion: string = "CREATE TABLE IF NOT EXISTS daradopcion(idsolicitud INTEGER PRIMARY KEY autoincrement, nombre_persona VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, edad_persona NUMBER NOT NULL, telefono VARCHAR(9) NOT NULL, nombre_mascota VARCHAR(50) NOT NULL, edad_mascota VARCHAR(20) NOT NULL, vacunas_mascotas VARCHAR(100) NOT NULL, problemas_salud VARCHAR(100) NOT NULL, historia_mascota VARCHAR(200) NOT NULL, foto TXT);";
+  tablaDaradopcion: string = "CREATE TABLE IF NOT EXISTS daradopcion(idsolicitud INTEGER PRIMARY KEY autoincrement, nombre_persona VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, edad_persona NUMBER NOT NULL, telefono VARCHAR(9) NOT NULL, nombre_mascota VARCHAR(50) NOT NULL, edad_mascota VARCHAR(20) NOT NULL, especie VARCHAR(10) NOT NULL , vacunas_mascotas VARCHAR(100) NOT NULL, problemas_salud VARCHAR(100) NOT NULL, historia_mascota VARCHAR(200) NOT NULL, foto TXT);";
 
   tablaUsuarios: string = `
   CREATE TABLE IF NOT EXISTS usuarios (
@@ -18,7 +19,7 @@ export class BasedatosService {
   );
 `;
 
-  constructor(private sqlite: SQLite) { }
+  constructor(private sqlite: SQLite, private alertController: AlertController) { }
 
   async abrirBaseDatos() {
     try{this.database = await this.sqlite.create({
@@ -74,8 +75,8 @@ export class BasedatosService {
 
   async agregarSolicitud(daradopcion: Daradopcion) {
     const sql = `INSERT INTO daradopcion 
-      (nombre_persona, email, edad_persona, telefono, nombre_mascota, edad_mascota, vacunas_mascotas, problemas_salud, historia_mascota, foto) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      (nombre_persona, email, edad_persona, telefono, nombre_mascota, edad_mascota, vacunas_mascotas, especie, problemas_salud, historia_mascota, foto) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const valores = [
       daradopcion.nombre_persona,
@@ -84,12 +85,25 @@ export class BasedatosService {
       daradopcion.telefono,
       daradopcion.nombre_mascota,
       daradopcion.edad_mascota,
+      daradopcion.especie,
       daradopcion.vacunas_mascotas,
       daradopcion.problemas_salud,
       daradopcion.historia_mascota,
       daradopcion.foto
     ];
 
-    return this.database.executeSql(sql, valores);
+    return this.database.executeSql(sql, valores).catch(e=>{
+      this.presentAlert("AgregarSolicitud",JSON.stringify(e));
+    });
+  }
+
+  async presentAlert(titulo:string, msj:string) {
+    const alert = await this.alertController.create({
+      header: titulo,
+      message: msj,
+      buttons: ['Action'],
+    });
+
+    await alert.present();
   }
 }
