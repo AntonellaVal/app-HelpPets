@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
       if (this.auten.validateLogin(this.email, this.password)) {
         if (this.auten.isAdmin(this.email)) {
           console.log("Inicio de sesión como administrador.");
-            this.navCtrl.navigateForward('/fichaanimales');
+            this.navCtrl.navigateForward('/admin');
         } else {
           console.log("Inicio de sesión como usuario normal.");
             this.navCtrl.navigateForward('/animaleadopcion');

@@ -1,0 +1,8 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px; /* Agrega algo de relleno en los lados */
+    --background: url('/assets/icon/fondoanimales.avif') no-repeat center center / cover; 
+  }
