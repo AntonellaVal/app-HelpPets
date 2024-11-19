@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-adoptar',
   templateUrl: './adoptar.page.html',

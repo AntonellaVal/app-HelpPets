@@ -1,0 +1,28 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px; /* Agrega algo de relleno en los lados */
+    --background: url('/assets/icon/fondoanimales.avif') no-repeat center center / cover; 
+  }
+  
+  form {
+    width: 100%;
+    max-width: 500px; /* Máximo ancho para pantallas grandes */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
+    margin-bottom: 120px;
+  }
+  
+  ion-item {
+    margin-bottom: 16px; /* Separación entre los campos del formulario */
+  }
+  
+  ion-button {
+    margin-top: 16px; /* Separación después del último campo */
+  }

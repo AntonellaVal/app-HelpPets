@@ -10,6 +10,14 @@ export class BasedatosService {
 
   tablaDaradopcion: string = "CREATE TABLE IF NOT EXISTS daradopcion(idsolicitud INTEGER PRIMARY KEY autoincrement, nombre_persona VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, edad_persona NUMBER NOT NULL, telefono VARCHAR(9) NOT NULL, nombre_mascota VARCHAR(50) NOT NULL, edad_mascota VARCHAR(20) NOT NULL, vacunas_mascotas VARCHAR(100) NOT NULL, problemas_salud VARCHAR(100) NOT NULL, historia_mascota VARCHAR(200) NOT NULL, foto TXT);";
 
+  tablaUsuarios: string = `
+  CREATE TABLE IF NOT EXISTS usuarios(
+    idusuario INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+  );
+`;
+
   constructor(private sqlite: SQLite) { }
 
   async abrirBaseDatos() {
@@ -19,6 +27,7 @@ export class BasedatosService {
     });
 
     await this.database.executeSql(this.tablaDaradopcion, []);
+    await this.database.executeSql(this.tablaUsuarios, []);
   }
 
   async agregarSolicitud(daradopcion: Daradopcion) {
@@ -41,5 +50,25 @@ export class BasedatosService {
     
 
     return this.database.executeSql(sql, valores);
+  }
+
+  async agregarUsuario(email: string, password: string) {
+    const sql = `INSERT INTO usuarios (email, password) VALUES (?, ?)`;
+    return this.database.executeSql(sql, [email, password]);
+  }
+
+  async actualizarPassword(email: string, nuevaPassword: string) {
+    const sql = `UPDATE usuarios SET password = ? WHERE email = ?`;
+    return this.database.executeSql(sql, [nuevaPassword, email]);
+  }
+
+  async obtenerUsuarioPorEmail(email: string) {
+    const sql = `SELECT * FROM usuarios WHERE email = ?`;
+    const resultado = await this.database.executeSql(sql, [email]);
+    if (resultado.rows.length > 0) {
+      return resultado.rows.item(0); // Devuelve el usuario encontrado
+    } else {
+      return null; // Retorna null si no encuentra usuario
+    }
   }
 }
