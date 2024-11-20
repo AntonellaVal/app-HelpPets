@@ -4,79 +4,48 @@
       <ion-card-title>Formulario de Registro</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
-      <!-- Campo para nombre -->
+    <form (ngSubmit)="registro()">
       <ion-item>
-        <ion-input 
-          label="Nombre" 
-          labelPlacement="floating" 
-          placeholder="Ingrese su nombre" 
-          type="text" 
-          [(ngModel)]="nombre" 
-          name="nombre" 
-          required>
-        </ion-input>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="nombre" name="nombre" required></ion-input>
       </ion-item>
-
-      <!-- Campo para correo -->
+    
       <ion-item>
-        <ion-input 
-          label="Email" 
-          labelPlacement="floating" 
-          placeholder="Ingrese su email" 
-          type="email" 
-          [(ngModel)]="email" 
-          name="email" 
-          required>
-        </ion-input>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
       </ion-item>
-
-      <!-- Alerta para correo no válido -->
+    
       <ion-text color="danger" *ngIf="email && !isGmailEmail(email)">
         El correo debe terminar en arroba gmail.com.
       </ion-text>
 
-      <!-- Campo para contraseña -->
       <ion-item>
-        <ion-input 
-          label="Contraseña" 
-          labelPlacement="floating" 
-          placeholder="Ingrese su contraseña" 
-          type="password" 
-          [(ngModel)]="password" 
-          name="password" 
-          required>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" name="password" type="password" required>
           <ion-input-password-toggle slot="end"></ion-input-password-toggle>
         </ion-input>
       </ion-item>
 
-      <!-- Alerta para contraseña no válida -->
       <ion-text color="danger" *ngIf="password && !validPassword(password)">
         La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
       </ion-text>
 
-      <!-- Campo para confirmar contraseña -->
+    
       <ion-item>
-        <ion-input 
-          label="Confirmar Contraseña" 
-          labelPlacement="floating" 
-          placeholder="Confirme su contraseña" 
-          type="password" 
-          [(ngModel)]="confirmPassword" 
-          name="confirmPassword" 
-          required>
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required>
           <ion-input-password-toggle slot="end"></ion-input-password-toggle>
         </ion-input>
       </ion-item>
 
-      <!-- Campo para seleccionar foto -->
+      <ion-text color="danger" *ngIf="password && !validPassword(password)">
+        La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
+      </ion-text>
+
       <ion-item>
         <ion-label>Foto de Usuario</ion-label>
         <input type="file" (change)="onFileSelected($event)" />
       </ion-item>
-
-      <!-- Botón para registrar -->
+    
       <ion-button expand="full" (click)="registro()">Registrarse</ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+    </form>
