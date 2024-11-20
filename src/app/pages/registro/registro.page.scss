@@ -1,62 +1,73 @@
-
-
 ion-content {
-    --background: url('/assets/icon/fondoanimales.avif') no-repeat center center / cover; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; // Asegura que el contenido se coloque desde la parte superior
-    align-items: center;
-    height: 100%; // Ocupa toda la pantalla
-  
+  --background: url('/assets/icon/fondoanimales.avif') no-repeat center center / cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; // Asegura que el contenido se coloque desde la parte superior
+  align-items: center;
+  height: 100%; // Ocupa toda la pantalla
 
-    .titulo-bienvenida {
-      color: rgb(61, 56, 61);
-      font-size: 36px;
-      font-weight: bold;
+  ion-card {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+
+    ion-card-header {
       text-align: center;
-      text-transform: uppercase;
-      margin: 20px 0;
-      z-index: 1; // Asegura que el título esté encima del fondo
+      margin-bottom: 15px;
+
+      ion-card-title {
+        color: #3a3a3a;
+        font-size: 24px;
+        font-weight: bold;
+      }
     }
-  
-    .form-container {
+
+    ion-card-content {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      width: 100%;
-      max-width: 400px;
-      z-index: 1; // Asegura que el formulario esté encima del fondo
-      padding: 20px;
-    }
-  
-    ion-card {
-      background-color: #ffffff;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      padding: 15px;
-      width: 100%;
-      max-width: 400px;
-      z-index: 1; // Asegura que la tarjeta esté por encima del fondo
-    }
-    
-    ion-item{
-        padding-top: 10px;
-    }
-  
-    ion-item {
-      --background: transparent;
-    }
-  
-    .text-register {
-      cursor: pointer;
-      text-align: center;
-      margin-top: 10px;
-      display: block;
-    }
-  
-    .button-container {
-      width: 100%;
-      margin-top: 15px;
+      justify-content: flex-start;
+
+      ion-item {
+        margin-bottom: 15px;
+        --background: transparent;
+      }
+
+      ion-label {
+        font-weight: bold;
+      }
+
+      ion-input {
+        --padding-start: 10px;
+        --padding-end: 10px;
+      }
+
+      /* Estilo para las alertas de error */
+      ion-text {
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: normal;
+      }
+
+      /* Estilo para el campo de la foto */
+      input[type="file"] {
+        display: block;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f8f8f8;
+      }
+
+      /* Estilo para el botón */
+      ion-button {
+        margin-top: 20px;
+        --border-radius: 8px;
+        --background: #4CAF50;
+        --color: white;
+      }
     }
   }
+}

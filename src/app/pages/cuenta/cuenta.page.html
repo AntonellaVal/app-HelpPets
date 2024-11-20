@@ -13,37 +13,28 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="cambiarPassword()">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input
-        type="email"
-        [(ngModel)]="email"
-        name="email"
-        required
-      ></ion-input>
-    </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información del Usuario</ion-card-title>
+    </ion-card-header>
 
-    <ion-item>
-      <ion-label position="floating">Contraseña Actual</ion-label>
-      <ion-input
-        type="password"
-        [(ngModel)]="password"
-        name="password"
-        required
-      ></ion-input>
-    </ion-item>
+    <ion-card-content>
+      <!-- Foto del usuario -->
+      <div class="user-photo">
+        <ion-img [src]="userPhoto || 'assets/default-avatar.png'"></ion-img>  <!-- Imagen por defecto si no se encuentra una foto -->
+      </div>
 
-    <ion-item>
-      <ion-label position="floating">Nueva Contraseña</ion-label>
-      <ion-input
-        type="password"
-        [(ngModel)]="nuevaPassword"
-        name="nuevaPassword"
-        required
-      ></ion-input>
-    </ion-item>
+      <!-- Nombre del usuario -->
+      <p><strong>Nombre:</strong> {{ userName }}</p>
 
-    <ion-button expand="full" type="submit">Cambiar Contraseña</ion-button>
-  </form>
+      <!-- Correo del usuario -->
+      <p><strong>Email:</strong> {{ userEmail }}</p>
+
+      <!-- Contraseña del usuario -->
+      <p><strong>Contraseña:</strong> {{ userPassword }}</p>
+
+      <!-- Botón para cambiar la contraseña -->
+      <ion-button expand="full" (click)="changePassword()">Cambiar Contraseña</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
