@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from '../../services/pet.service';  // El servicio que creaste para interactuar con la API
-import { NavController } from '@ionic/angular';  // Para navegar entre páginas
+import { PetService } from '../../services/pet.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,50 +7,48 @@ import { NavController } from '@ionic/angular';  // Para navegar entre páginas
   styleUrls: ['./admin.page.scss'],
 })
 export class AdminPage implements OnInit {
+  pets: any[] = [];  // Lista de mascotas
+  newPet = { nombre: '', especie: '', edad: null, adoptada: false };  // Formulario para nueva mascota
 
-  pets: any[] = [];  // Array de mascotas
-  petToEdit: any = null;  // Para almacenar la mascota que estamos editando
-  newPet: any = { nom_masc: '', edad_masc: null, adoptado: false, especie_masc: '' };  // Para el formulario de agregar mascota
-
-  constructor(private petService: PetService, private navCtrl: NavController) {}
+  constructor(private petService: PetService) {}
 
   ngOnInit() {
-    this.loadPets();
+    this.loadPets(); // Cargar mascotas al iniciar el componente
   }
 
+  // Método para cargar las mascotas
   loadPets() {
-    this.petService.getPets().subscribe((data: any[]) => {
-      this.pets = data;  // Cargar las mascotas desde la API
+    this.petService.getPets().then((data: any[]) => {
+      this.pets = data;  // Actualizar la lista de mascotas
+    }).catch((error) => {
+      console.error('Error al cargar las mascotas:', error);
     });
   }
 
-  // Función para agregar una nueva mascota
+  // Método para agregar una nueva mascota
   addPet() {
-    this.petService.addPet(this.newPet).subscribe((data) => {
-      this.loadPets();  // Recargar las mascotas después de agregar
-      this.newPet = { nom_masc: '', edad_masc: null, adoptado: false, especie_masc: '' };  // Limpiar el formulario
-    });
-  }
-
-  // Función para editar una mascota existente
-  editPet(pet: any) {
-    this.petToEdit = { ...pet };  // Crear una copia para editar
-  }
-
-  // Función para guardar los cambios de una mascota
-  savePet() {
-    if (this.petToEdit) {
-      this.petService.updatePet(this.petToEdit).subscribe(() => {
-        this.loadPets();  // Recargar las mascotas después de modificar
-        this.petToEdit = null;  // Limpiar la mascota que se está editando
+    const { nombre, especie, edad, adoptada } = this.newPet;
+    if (nombre && especie && edad != null) {
+      this.petService.addPet(nombre, especie, edad, adoptada).then(() => {
+        console.log('Mascota agregada');
+        this.newPet = { nombre: '', especie: '', edad: null, adoptada: false };  // Limpiar formulario
+        this.loadPets();  // Recargar mascotas
+      }).catch((error) => {
+        console.error('Error al agregar mascota:', error);
       });
+    } else {
+      console.error('Todos los campos son obligatorios');
     }
   }
 
-  // Función para eliminar una mascota
-  deletePet(petId: number) {
-    this.petService.deletePet(petId).subscribe(() => {
-      this.loadPets();  // Recargar las mascotas después de eliminar
+  // Método para eliminar una mascota
+  deletePet(id: number) {
+    this.petService.deletePet(id).then(() => {
+      console.log('Mascota eliminada');
+      this.loadPets();  // Recargar mascotas
+    }).catch((error) => {
+      console.error('Error al eliminar mascota:', error);
     });
   }
 }
+  

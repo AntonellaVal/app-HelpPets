@@ -7,17 +7,19 @@
 </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-content>
-    <ion-card *ngFor="let pet of pets">
-      <ion-card-header>
-        <ion-card-title>{{ pet.nom_masc }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Edad: {{ pet.edad_masc }} años</p>
-        <p>Especie: {{ pet.especie_masc }}</p>
-        <p>Adoptado: {{ pet.adoptado ? 'Sí' : 'No' }}</p>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let pet of pets">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ pet.nombre }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Especie: {{ pet.especie }}</p>
+          <p>Edad: {{ pet.edad }}</p>
+          <p>¿Adoptada?: {{ pet.adoptada === 'true' ? 'Sí' : 'No' }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </ion-content>

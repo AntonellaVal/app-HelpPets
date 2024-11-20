@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from '../../services/pet.service'
+import { PetService } from '../../services/pet.service';
 
 @Component({
   selector: 'app-animaleadopcion',
@@ -17,8 +17,12 @@ export class AnimaleadopcionPage implements OnInit {
   }
 
   loadPets() {
-    this.petService.getPets().subscribe((data: any[]) => {
-      this.pets = data;  // Asignar los datos obtenidos de la API
+    // Obtener las mascotas usando la promesa
+    this.petService.getPets().then((data: any[]) => {
+      this.pets = data;  // Asignar los datos obtenidos de la base de datos
+    }).catch((error) => {
+      console.error('Error al cargar las mascotas:', error);
     });
   }
 }
+

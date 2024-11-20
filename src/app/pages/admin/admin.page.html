@@ -4,78 +4,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <!-- Formulario de Agregar Mascota -->
-  <ion-card class="form-card">
+<ion-content>
+  <!-- Formulario para agregar nueva mascota -->
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>Agregar Mascota</ion-card-title>
+      <ion-card-title>Agregar Nueva Mascota</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form (ngSubmit)="addPet()">
-        <ion-item>
-          <ion-label>Nombre: </ion-label>
-          <ion-input [(ngModel)]="newPet.nom_masc" name="nom_masc" placeholder="Nombre de la mascota"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Edad: </ion-label>
-          <ion-input type="number" [(ngModel)]="newPet.edad_masc" name="edad_masc" placeholder="Edad de la mascota"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Especie: </ion-label>
-          <ion-input [(ngModel)]="newPet.especie_masc" name="especie_masc" placeholder="Especie de la mascota"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Adoptado: </ion-label>
-          <ion-checkbox [(ngModel)]="newPet.adoptado" name="adoptado"></ion-checkbox>
-        </ion-item>
-        <ion-button expand="full" type="submit">Agregar</ion-button>
-      </form>
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input [(ngModel)]="newPet.nombre" placeholder="Nombre de la mascota"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Especie</ion-label>
+        <ion-input [(ngModel)]="newPet.especie" placeholder="Especie de la mascota"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Edad</ion-label>
+        <ion-input type="number" [(ngModel)]="newPet.edad" placeholder="Edad de la mascota"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>¿Adoptada?</ion-label>
+        <ion-toggle [(ngModel)]="newPet.adoptada"></ion-toggle>
+      </ion-item>
+      <ion-button expand="block" (click)="addPet()">Agregar Mascota</ion-button>
     </ion-card-content>
   </ion-card>
 
-  <!-- Listar las mascotas en cards -->
-  <ion-card *ngFor="let pet of pets">
-    <ion-card-header>
-      <ion-card-title>{{ pet.nom_masc }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Edad: {{ pet.edad_masc }} años</p>
-      <p>Especie: {{ pet.especie_masc }}</p>
-      <p>Adoptado: {{ pet.adoptado ? 'Sí' : 'No' }}</p>
-      <ion-button (click)="editPet(pet)">Editar</ion-button>
-      <ion-button color="danger" (click)="deletePet(pet.id)">Eliminar</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Formulario para editar una mascota -->
-  <ion-card *ngIf="petToEdit">
-    <ion-card-header>
-      <ion-card-title>Editar Mascota</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form (ngSubmit)="savePet()">
-        <ion-item>
-          <ion-label>Nombre</ion-label>
-          <ion-input [(ngModel)]="petToEdit.nom_masc" name="nom_masc" placeholder="Nombre de la mascota"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Edad</ion-label>
-          <ion-input type="number" [(ngModel)]="petToEdit.edad_masc" name="edad_masc" placeholder="Edad de la mascota"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Especie</ion-label>
-          <ion-input [(ngModel)]="petToEdit.especie_masc" name="especie_masc" placeholder="Especie de la mascota"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Adoptado</ion-label>
-          <ion-checkbox [(ngModel)]="petToEdit.adoptado" name="adoptado"></ion-checkbox>
-        </ion-item>
-        <ion-button expand="full" type="submit">Guardar Cambios</ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
+  <!-- Lista de mascotas registradas -->
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Mascotas Registradas</ion-label>
+      </ion-item-divider>
+      <ion-item *ngFor="let pet of pets">
+        <ion-label>
+          <h2>{{ pet.nombre }}</h2>
+          <p>Especie: {{ pet.especie }} | Edad: {{ pet.edad }}</p>
+          <p>¿Adoptada?: {{ pet.adoptada === 'true' ? 'Sí' : 'No' }}</p>
+        </ion-label>
+        <ion-button color="danger" (click)="deletePet(pet.id)">Eliminar</ion-button>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>
-
-
-
-  

@@ -25,21 +25,24 @@ export class LoginPage implements OnInit {
 
   inicio(): void {
     if (this.isGmailEmail(this.email)) {
+      console.log("Validando login para", this.email);  // Verificación de correo
       if (this.auten.validateLogin(this.email, this.password)) {
+        console.log("Login validado");
         if (this.auten.isAdmin(this.email)) {
           console.log("Inicio de sesión como administrador.");
-            this.navCtrl.navigateForward('/admin');
+            this.navCtrl.navigateForward('/admin');  // Redirección a Admin
         } else {
           console.log("Inicio de sesión como usuario normal.");
-            this.navCtrl.navigateForward('/animaleadopcion');
+            this.navCtrl.navigateForward('/animaleadopcion');  // Redirección a Animaleadopcion
         }
       } else {
-        console.log("Por favor, ingresa un email válido y una contraseña que cumpla con los requisitos de registro.");
+        console.log("Error en el login: Credenciales incorrectas");
       }
     } else {
       console.log("El email debe terminar en @gmail.com");
     }
-  }
+}
+
 
   Irregistro(){
     this.navCtrl.navigateForward('/registro');
