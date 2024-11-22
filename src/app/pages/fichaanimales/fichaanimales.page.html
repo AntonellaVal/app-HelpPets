@@ -1,41 +1,27 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="secondary">
-      <ion-button>
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  <ion-title>ficha del animal</ion-title>
-  <ion-buttons slot="end">
-    <ion-menu-button></ion-menu-button> 
-  </ion-buttons>
-</ion-toolbar>
+    <ion-title>Detalles de la Mascota</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-content>
-    <ion-card>
-      <img src="/assets/icon/waton.jpg"  alt="dino">
-      <div class="card-body">
-        <ion-card-title>Conocelo a detalle</ion-card-title>
+<ion-content>
+  <ion-card *ngIf="petDetails">
+    <ion-card-header>
+      <ion-card-title>{{ petDetails.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ petDetails.especie }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Edad: {{ petDetails.edad }} años
+      <br />
+      Estado: {{ petDetails.adoptada ? 'Adoptada' : 'Disponible para adopción' }}
+    </ion-card-content>
 
-        <h5 class="card-title">Nombre:</h5>
-        <p class="card-text">waton</p>
-        <h5 class="card-title">Genero:</h5>
-        <p class="card-text">Macho</p>
-        <h5 class="card-title">Especie:</h5>
-        <p class="card-text">Conejo</p>
-        <h5 class="card-title">Edad:</h5>
-        <p class="card-text">1 año</p>
-        <h5 class="card-title">Vacunas:</h5>
-        <p class="card-text">no</p>
-        <h5 class="card-title">Problemas de salud:</h5>
-        <p class="card-text">no</p>
-        <h5 class="card-title">Su historia:</h5>
-        <p class="card-text">el es un conejo cariñoso y jugeton, le gusta estar con la gente y es fan de las frutillas</p>
-
-        <ion-button color="primary" [routerLink]="['/adoptar']">Adoptar</ion-button>
-      </div>
-    </ion-card>
-  </ion-content>
+    <!-- Aquí, solo mostraremos el botón si la mascota está disponible para adopción -->
+    <ion-footer>
+      <ion-button 
+        *ngIf="isAdoptable" 
+        expand="full" 
+        (click)="adoptPet()">Adoptar</ion-button>
+    </ion-footer>
+  </ion-card>
 </ion-content>

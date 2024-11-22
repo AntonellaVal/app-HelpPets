@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Daradopcion } from './daradopcion.service';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { AlertController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
+import { AutenticacionService } from './autenticacion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class BasedatosService {
   CREATE TABLE IF NOT EXISTS usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
   );
 `;
 
@@ -68,14 +70,14 @@ export class BasedatosService {
     const sql = `SELECT * FROM usuarios WHERE email = ? AND password = ?`;
     const result = await this.database.executeSql(sql, [email, password]);
 
-    // Retorna verdadero si se encuentra un usuario
+    // Retorna verdadero si se encuentra un usuario con las credenciales correctas
     return result.rows.length > 0;
   }
 
 
   async agregarSolicitud(daradopcion: Daradopcion) {
     const sql = `INSERT INTO daradopcion 
-      (nombre_persona, email, edad_persona, telefono, nombre_mascota, edad_mascota, vacunas_mascotas, especie, problemas_salud, historia_mascota, foto) 
+      (nombre_persona, email, edad_persona, telefono, nombre_mascota, edad_mascota, especie, vacunas_mascotas,  problemas_salud, historia_mascota, foto) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const valores = [
@@ -106,4 +108,25 @@ export class BasedatosService {
 
     await alert.present();
   }
+
+  async agregarUsuario(email: string, password: string) {
+    const sql = `INSERT INTO usuarios (email, password) VALUES (?, ?)`;
+    return this.database.executeSql(sql, [email, password]);
+  }
+
+  async actualizarPassword(email: string, nuevaPassword: string) {
+    const sql = `UPDATE usuarios SET password = ? WHERE email = ?`;
+    return this.database.executeSql(sql, [nuevaPassword, email]);
+  }
+
+  async obtenerUsuarioPorEmail(email: string) {
+    const sql = `SELECT * FROM usuarios WHERE email = ?`;
+    const resultado = await this.database.executeSql(sql, [email]);
+    if (resultado.rows.length > 0) {
+      return resultado.rows.item(0); // Devuelve el usuario encontrado
+    } else {
+      return null; // Retorna null si no encuentra usuario
+    }
+  }
+  
 }

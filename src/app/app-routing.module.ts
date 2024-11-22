@@ -56,8 +56,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/adoptar/adoptar.module').then( m => m.AdoptarPageModule)
   },
   {
-    path: 'pruebaregistro',
-    loadChildren: () => import('./pages/pruebaregistro/pruebaregistro.module').then( m => m.PruebaregistroPageModule)
+    path: 'cambiarcontra',
+    loadChildren: () => import('./pages/cambiarcontra/cambiarcontra.module').then( m => m.CambiarcontraPageModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
   },
 ];
 

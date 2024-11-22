@@ -88,7 +88,7 @@ export class FormdaradopcionPage implements OnInit {
     }
   }
 
-  private camposVacios(): boolean {
+  public camposVacios(): boolean {
     return !this.daradopcion.nombre_persona || !this.daradopcion.email || !this.daradopcion.edad_persona || !this.daradopcion.telefono || 
            !this.daradopcion.nombre_mascota || !this.daradopcion.edad_mascota || !this.daradopcion.especie ||
            !this.daradopcion.vacunas_mascotas || !this.daradopcion.problemas_salud || !this.daradopcion.historia_mascota;

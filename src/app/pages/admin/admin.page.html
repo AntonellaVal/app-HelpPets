@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <ion-title>Vista Admin</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Formulario para agregar una nueva mascota -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Agregar Nueva Mascota</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="newPet.nombre" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Especie</ion-label>
+        <ion-input [(ngModel)]="newPet.especie" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input [(ngModel)]="newPet.edad" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Adoptada</ion-label>
+        <ion-toggle [(ngModel)]="newPet.adoptada"></ion-toggle>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Foto de la mascota</ion-label>
+        <ion-button expand="full" (click)="seleccionarFoto()">Agregar foto</ion-button>
+        <ion-button expand="full" (click)="tomarFoto()">Tomar foto</ion-button>
+        <img *ngIf="newPet.foto" [src]="newPet.foto" alt="Foto de la mascota" style="width: 100%; height: auto; margin-top: 10px;">
+      </ion-item>
+
+      <ion-button expand="full" (click)="addPet()">Agregar Mascota</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de mascotas -->
+  <ion-list>
+    <ion-card *ngFor="let pet of pets">
+      <ion-card-header>
+        <ion-card-title>{{ pet.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ pet.especie }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <img *ngIf="pet.foto" [src]="pet.foto" alt="Foto de la mascota" style="width: 100%; height: auto;" />
+        Edad: {{ pet.edad }} años
+        <br />
+        Estado: {{ pet.adoptada ? 'Adoptada' : 'Disponible para adopción' }}
+        <br />
+        <ion-button color="danger" (click)="deletePet(pet.id)">Eliminar</ion-button>
+        <ion-button (click)="toggleAdoptionStatus(pet)">
+          {{ pet.adoptada ? 'Marcar como no adoptada' : 'Marcar como adoptada' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

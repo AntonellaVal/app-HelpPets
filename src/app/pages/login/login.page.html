@@ -15,6 +15,10 @@
         <ion-item>
           <ion-input label="Email" labelPlacement="floating" placeholder="Ingrese email" type="email" [(ngModel)]="email" name="email" required></ion-input>
         </ion-item>
+
+        <ion-text color="danger" *ngIf="email && !isGmailEmail(email)">
+          El correo debe terminar en arroba gmail.com.
+        </ion-text>
     
         <ion-item>
           <ion-input label="Contraseña" labelPlacement="floating" placeholder="Ingrese contraseña" type="password" [(ngModel)]="password" name="password" required>
@@ -22,27 +26,13 @@
           </ion-input>
         </ion-item>
 
-        <ion-text color="danger" *ngIf="errorLogin">
-          Email o contraseña incorrectos.
+        <ion-text color="danger" *ngIf="password && !validPassword(password)">
+          La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
         </ion-text>
 
-        <!-- Texto para redirigir al registro -->
-        <ion-text 
-          class="text-register" 
-          color="tertiary" 
-          (click)="Irregistro()">
-          ¿No tienes una cuenta? <strong>Regístrate aquí</strong>
-        </ion-text>
-        
-        <!-- Botón de inicio de sesión -->
-        <ion-button 
-          class="button-container" 
-          type="submit" 
-          color="tertiary" 
-          [disabled]="!inicioForm.valid">
-          Ingresar
-        </ion-button>
-        
+        <ion-text class="text-register" color="tertiary" (click)="Irregistro()">¿No tienes una cuenta? <strong>Regístrate aquí</strong></ion-text>
+    
+        <ion-button class="button-container" type="submit" color="tertiary" [disabled]="!inicioForm.valid">Ingresar</ion-button>
       </ion-card>
     </form>
   </ion-content>

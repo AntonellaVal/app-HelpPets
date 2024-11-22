@@ -1,13 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cuenta</ion-title>
-  </ion-toolbar>
+    <ion-buttons slot="secondary">
+    </ion-buttons>
+  <ion-title>Mi cuenta</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cuenta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información del Usuario</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Foto del usuario -->
+      <div class="user-photo">
+        <ion-img [src]="userPhoto || 'assets/default-avatar.png'"></ion-img>  <!-- Imagen por defecto si no se encuentra una foto -->
+      </div>
+
+      <!-- Nombre del usuario -->
+      <p><strong>Nombre:</strong> {{ userName }}</p>
+
+      <!-- Correo del usuario -->
+      <p><strong>Email:</strong> {{ userEmail }}</p>
+
+      <!-- Contraseña del usuario -->
+      <p><strong>Contraseña:</strong> {{ userPassword }}</p>
+
+      <!-- Botón para cambiar la contraseña -->
+      <ion-button expand="full" (click)="changePassword()">Cambiar Contraseña</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

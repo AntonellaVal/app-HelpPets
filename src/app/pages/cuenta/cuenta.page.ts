@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { BasedatosService } from 'src/app/services/basedatos.service';
+
 
 @Component({
   selector: 'app-cuenta',
@@ -6,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cuenta.page.scss'],
 })
 export class CuentaPage implements OnInit {
+  userName: string | null = null;
+  userEmail: string | null = null;
+  userPassword: string | null = null;
+  userPhoto: string | null = null;
 
-  constructor() { }
+  constructor(private authService: AutenticacionService) {}
 
   ngOnInit() {
+    this.loadUserInfo(); // Cargar la información del usuario cuando se inicializa la página
+  }
+
+  // Método para cargar la información del usuario
+  loadUserInfo() {
+    this.userEmail = this.authService.getRegistroEmail();
+    this.userPassword = this.authService.getRegistroPassword();
+    this.userName = this.authService.getRegistroNombre();
+    this.userPhoto = this.authService.getRegistroFoto();
+  }
+
+  // Método para cambiar la contraseña
+  changePassword() {
+    // Lógica para cambiar la contraseña, por ejemplo, mostrar un modal o un formulario
+    console.log('Cambiar contraseña');
   }
 
 }
