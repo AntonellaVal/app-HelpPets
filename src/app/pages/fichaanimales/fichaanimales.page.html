@@ -21,10 +21,10 @@
 
     <!-- Aquí, solo mostraremos el botón si la mascota está disponible para adopción -->
     <ion-footer>
-      <ion-button 
-        *ngIf="isAdoptable" 
-        expand="full" 
-        (click)="adoptPet()">Adoptar</ion-button>
+      <ion-button *ngIf="!petDetails.adoptada"  expand="full" (click)="adoptPet()"> Adoptar </ion-button>
+
+    <!-- Si la mascota está adoptada, mostramos un mensaje de "Adoptada" (opcional) -->
+    <ion-button *ngIf="petDetails.adoptada"expand="full"disabled>Adoptada</ion-button>
     </ion-footer>
   </ion-card>
 </ion-content>

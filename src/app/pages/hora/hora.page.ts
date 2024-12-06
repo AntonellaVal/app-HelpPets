@@ -91,15 +91,15 @@ export class HoraPage implements OnInit {
   }
 
   fechaValida(): boolean {
-    const fechaActual = new Date(); // Fecha actual
-    fechaActual.setHours(0, 0, 0, 0); // Eliminar la parte de la hora para hacer comparación solo por fecha
+    const fechaActual = new Date(); 
+    fechaActual.setHours(0, 0, 0, 0); 
 
     // Descomponer la fecha ingresada por el usuario (en formato día/mes/año)
     const [dia, mes, anio] = this.cita.fecha.split('/').map(Number);
     
     // Crear una fecha ingresada por el usuario
-    const fechaIngresada = new Date(anio, mes - 1, dia); // El mes en JavaScript es 0-indexado
-    fechaIngresada.setHours(0, 0, 0, 0); // Eliminar la parte de la hora de la fecha ingresada
+    const fechaIngresada = new Date(anio, mes - 1, dia); 
+    fechaIngresada.setHours(0, 0, 0, 0); 
 
     // Verificar que la fecha ingresada no sea anterior a la fecha actual
     return fechaIngresada.getTime() >= fechaActual.getTime();
