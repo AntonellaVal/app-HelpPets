@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Daradopcion } from './daradopcion.service';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { AlertController } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
-import { AutenticacionService } from './autenticacion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +9,15 @@ import { AutenticacionService } from './autenticacion.service';
 export class BasedatosService {
   public database!: SQLiteObject;
 
-  tablaDaradopcion: string = "CREATE TABLE IF NOT EXISTS daradopcion(idsolicitud INTEGER PRIMARY KEY autoincrement, nombre_persona VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, edad_persona NUMBER NOT NULL, telefono VARCHAR(9) NOT NULL, nombre_mascota VARCHAR(50) NOT NULL, edad_mascota VARCHAR(20) NOT NULL, especie VARCHAR(10) NOT NULL , vacunas_mascotas VARCHAR(100) NOT NULL, problemas_salud VARCHAR(100) NOT NULL, historia_mascota VARCHAR(200) NOT NULL, foto TXT);";
+  tablaDaradopcion: string = "CREATE TABLE daradopcion(idsolicitud INTEGER PRIMARY KEY autoincrement, nombre_persona VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, edad_persona NUMBER NOT NULL, telefono VARCHAR(9) NOT NULL, nombre_mascota VARCHAR(50) NOT NULL, edad_mascota VARCHAR(20) NOT NULL, especie VARCHAR(10) NOT NULL , vacunas_mascotas VARCHAR(100) NOT NULL, problemas_salud VARCHAR(100) NOT NULL, historia_mascota VARCHAR(200) NOT NULL, foto TEXT);";
 
   tablaUsuarios: string = `
-  CREATE TABLE IF NOT EXISTS usuarios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL,
-  );
-`;
-
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email VARCHAR(100) UNIQUE NOT NULL,
+      password VARCHAR(100) NOT NULL
+    );
+  `;
   constructor(private sqlite: SQLite, private alertController: AlertController) { }
 
   async abrirBaseDatos() {
@@ -40,17 +37,11 @@ export class BasedatosService {
     await this.database.executeSql(this.tablaUsuarios, []);
   }
 
-  async registrarUsuario(email: string, password: string) {
+  async registrarUsuario(email: string, password: string): Promise<void> {
     const sql = `INSERT INTO usuarios (email, password) VALUES (?, ?)`;
-    try {
-      await this.database.executeSql(sql, [email, password]);
-      console.log('Usuario registrado con éxito');
-    } catch (error) {
-      console.error('Error al registrar usuario:', error);
-      throw error;
-    }
+    await this.database.executeSql(sql, [email, password]);
   }
-
+  
   async obtenerUsuarios() {
     const sql = 'SELECT * FROM usuarios';
     try {
@@ -69,8 +60,6 @@ export class BasedatosService {
   async validarUsuario(email: string, password: string): Promise<boolean> {
     const sql = `SELECT * FROM usuarios WHERE email = ? AND password = ?`;
     const result = await this.database.executeSql(sql, [email, password]);
-
-    // Retorna verdadero si se encuentra un usuario con las credenciales correctas
     return result.rows.length > 0;
   }
 

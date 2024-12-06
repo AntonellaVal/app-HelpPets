@@ -4,29 +4,34 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AutenticacionService {
+  private readonly ADMIN_DOMAIN = '@helppets.cl';
 
   private readonly EMAIL_KEY = 'registroEmail';
-  private readonly PASSWORD_KEY = 'registroPassword';
-  private readonly ADMIN_EMAIL = 'administrador@gmail.com';
   private readonly NAME_KEY = 'registroNombre';
   private readonly PHOTO_KEY = 'registroFoto';
 
-
-  constructor() { }
+  constructor() {}
 
   registerUser(email: string, password: string, nombre: string, photo: string): void {
+    console.log('Guardando foto en LocalStorage:', photo); // Debug
     localStorage.setItem(this.EMAIL_KEY, email);
-    localStorage.setItem(this.PASSWORD_KEY, password);
+    localStorage.setItem('registroPassword', password);
     localStorage.setItem(this.NAME_KEY, nombre);
     localStorage.setItem(this.PHOTO_KEY, photo); // Guardar la foto
   }
 
-  getRegistroEmail(): string | null {
-    return localStorage.getItem(this.EMAIL_KEY);
+  isAdmin(email: string): boolean {
+    return email.endsWith(this.ADMIN_DOMAIN);
   }
 
-  getRegistroPassword(): string | null {
-    return localStorage.getItem(this.PASSWORD_KEY);
+  validateLogin(email: string, password: string): boolean {
+    const registroEmail = localStorage.getItem(this.EMAIL_KEY);
+    const registroPassword = localStorage.getItem('registroPassword');
+    return email === registroEmail && password === registroPassword;
+  }
+
+  getRegistroEmail(): string | null {
+    return localStorage.getItem(this.EMAIL_KEY);
   }
 
   getRegistroNombre(): string | null {
@@ -34,22 +39,7 @@ export class AutenticacionService {
   }
 
   getRegistroFoto(): string | null {
-    return localStorage.getItem(this.PHOTO_KEY);
+    const photo = localStorage.getItem(this.PHOTO_KEY);
+    return photo && photo.startsWith('data:image') ? photo : null; // Verificar formato válido
   }
-
-  validateLogin(email: string, password: string): boolean {
-    const registroEmail = this.getRegistroEmail();
-    const registroPassword = this.getRegistroPassword();
-    return email === registroEmail && password === registroPassword;
-  }
-
-  validPassword(password: string): boolean {
-    const passwordRegEx = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{3,}$/;
-    return passwordRegEx.test(password);
-  }
-
-  isAdmin(email: string): boolean {
-    return email === this.ADMIN_EMAIL;
-  }
-  
 }

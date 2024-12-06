@@ -27,8 +27,8 @@ describe('AdoptarPage', () => {
     fixture.detectChanges();
   });
 
-  it('Debería dar false si el teléfono no cumple con los números iniciales (+56 9)', () => {
-    component.adopcion.telefono = '+56 8 98765432'; 
+  it('Debería dar false si el teléfono no cumple con los números iniciales (9XXXXXXXX)', () => {
+    component.adopcion.telefono = '898765432'; 
     const resultado = component.telefonoValido(); 
     expect(resultado).toBeFalse(); 
   });

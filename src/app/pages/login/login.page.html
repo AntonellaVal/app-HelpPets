@@ -1,23 +1,18 @@
-
-
 <ion-content [fullscreen]="true">
   <ion-content>
-
-
     <div class="contenedor-imagen">
       <img src="/assets/icon/logo 1.jpg" alt="Descripción de la imagen" class="imagen">
-    </div>
-
+    </div>    
     
-    
-    <form (ngSubmit)="inicio()" #inicioForm="ngForm" class="form-container">
+    <form (ngSubmit)="login()" #inicioForm="ngForm" class="form-container">
       <ion-card>
         <ion-item>
           <ion-input label="Email" labelPlacement="floating" placeholder="Ingrese email" type="email" [(ngModel)]="email" name="email" required></ion-input>
         </ion-item>
 
-        <ion-text color="danger" *ngIf="email && !isGmailEmail(email)">
-          El correo debe terminar en arroba gmail.com.
+        <!-- Validación para el email -->
+        <ion-text color="danger" *ngIf="email && !isValidEmail(email)">
+          "El correo debe terminar en &#64;gmail.com o &#64;helppets.cl".
         </ion-text>
     
         <ion-item>
@@ -26,11 +21,12 @@
           </ion-input>
         </ion-item>
 
+        <!-- Validación para la contraseña -->
         <ion-text color="danger" *ngIf="password && !validPassword(password)">
           La contraseña debe tener al menos una mayúscula, un número y un carácter especial.
         </ion-text>
 
-        <ion-text class="text-register" color="tertiary" (click)="Irregistro()">¿No tienes una cuenta? <strong>Regístrate aquí</strong></ion-text>
+        <ion-text class="text-register" color="tertiary" (click)="goToRegistro()">¿No tienes una cuenta? <strong>Regístrate aquí</strong></ion-text>
     
         <ion-button class="button-container" type="submit" color="tertiary" [disabled]="!inicioForm.valid">Ingresar</ion-button>
       </ion-card>

@@ -1,13 +1,25 @@
-<ion-list>
-  <ion-card *ngFor="let pet of pets" (click)="goToDetails(pet)">
-    <ion-card-header>
-      <ion-card-title>{{ pet.nombre }}</ion-card-title>
-      <ion-card-subtitle>{{ pet.especie }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      Edad: {{ pet.edad }} años
-      <br />
-      Estado: {{ pet.adoptada ? 'Adoptada' : 'Disponible para adopción' }}
-    </ion-card-content>
-  </ion-card>
-</ion-list>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  <ion-title>animales en adopcion</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button> 
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let pet of pets" (click)="goToDetails(pet)">
+      <ion-card-header>
+        <ion-card-title>{{ pet.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ pet.especie }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        Edad: {{ pet.edad }} años
+        <br />
+        Estado: {{ pet.adoptada ? 'Adoptada' : 'Disponible para adopción' }}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
+

@@ -10,6 +10,9 @@ import { Daradopcion } from 'src/app/services/daradopcion.service';
   styleUrls: ['./formdaradopcion.page.scss'],
 })
 export class FormdaradopcionPage implements OnInit {
+  especiesValida(): any {
+    throw new Error('Method not implemented.');
+  }
 
   daradopcion: Daradopcion = new Daradopcion();
   foto: string | null = null;
@@ -91,7 +94,7 @@ export class FormdaradopcionPage implements OnInit {
   public camposVacios(): boolean {
     return !this.daradopcion.nombre_persona || !this.daradopcion.email || !this.daradopcion.edad_persona || !this.daradopcion.telefono || 
            !this.daradopcion.nombre_mascota || !this.daradopcion.edad_mascota || !this.daradopcion.especie ||
-           !this.daradopcion.vacunas_mascotas || !this.daradopcion.problemas_salud || !this.daradopcion.historia_mascota;
+           !this.daradopcion.vacunas_mascotas || !this.daradopcion.problemas_salud || !this.daradopcion.historia_mascota || !this.daradopcion.foto;
   }
 
   private async mostrarAlerta(header: string, message: string) {

@@ -1,4 +1,11 @@
-.user-photo {
+ion-content {
+  --background: url('/assets/icon/fondoanimales.avif') no-repeat center center / cover; 
+  ion-item{
+      --background: transparent;
+  margin-top: 15px;
+  }
+
+  .user-photo {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -8,3 +15,5 @@
     justify-content: center;
     align-items: center;
   }
+  
+}

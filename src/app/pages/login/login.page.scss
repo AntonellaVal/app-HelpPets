@@ -15,21 +15,21 @@ ion-header{
       
         .contenedor-imagen {
           display: flex;
-          justify-content: center;  /* Centra horizontalmente */
-          align-items: center;      /* Centra verticalmente */
+          justify-content: center; 
+          align-items: center;      
           margin-top: 10ch;
           margin-bottom: 5ch;
-          height: 50px;            /* Opcional: hace que el contenedor ocupe toda la altura de la pantalla */
+          height: 50px;            
         }
 
         .imagen{
         display: flex;
         justify-content: center;
         align-items: center;
-          width: 150px;    /* Ajusta el tamaño según lo necesites */
-          height: 150px;   /* Mantén el mismo valor para width y height para que sea un círculo perfecto */
-          border-radius: 50%; /* Hace que la imagen sea redonda */
-          object-fit: cover;  /* Asegura que la imagen no se deforme */
+          width: 150px;    
+          height: 150px;   
+          border-radius: 50%; 
+          object-fit: cover;  
         }
       
         .form-container {

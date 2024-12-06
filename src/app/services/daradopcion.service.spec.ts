@@ -6,11 +6,13 @@ describe('DaradopcionService', () => {
   let service: Daradopcion;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [Daradopcion]
+    });
     service = TestBed.inject(Daradopcion);
   });
 
-  xit('should be created', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
