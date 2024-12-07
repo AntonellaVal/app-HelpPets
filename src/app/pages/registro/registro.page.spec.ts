@@ -20,8 +20,8 @@ describe('RegistroPage', () => {
     fixture.detectChanges();
   });
 
-  it('Debería devolver false si la contraseña no contiene una mayuscula, un numero y un carácter especial', () => {
-    const resultado = component.validPassword('usuario')
+  it('Debería devolver false si la contraseña no contiene una mayúscula, un número y un carácter especial', () => {
+    const resultado = component.validPassword('password123'); // Falta mayúscula y carácter especial
     expect(resultado).toBeFalse();
-  });
+  });
 });

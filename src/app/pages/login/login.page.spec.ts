@@ -52,7 +52,7 @@ describe('LoginPage', () => {
 
   it('Deberia retornar falso si el email no contiene @gmail.com', () => {
     // Verifica que el email no contiene '@gmail.com'
-    const resultado = component.isGmailEmail('anto@hotmail.com');  // Email no válido
+    const resultado = component.isValidEmail('anto@hotmail.com');  // Email no válido
     expect(resultado).toBeFalse();
   });
 });
